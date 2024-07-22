@@ -1,8 +1,8 @@
-import React from 'react'
-import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
-describe('Sprint 7 Challenge Learner Tests', () => {
+describe("Sprint 7 Challenge Learner Tests", () => {
   /*
   👉 TASK 1 - Unit Testing of sum function at the bottom of this module
 
@@ -14,13 +14,29 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [4] sum('1', 2) // returns 3
     [5] sum('10', '3') // returns 13
   */
-
+describe('sum function', () => {
+  test('sum() throws an error "pass validn numbers"', () => {
+    expect(() => sum()).toThrow('pass valid numbers');
+  });
+  test('sum(2, "seven") throws an error "pass valid numbers"', () => {
+    expect(() => sum(2, 'seven')).toThrow('pass valid numbers')
+  });
+  test('sum(1, 3) returns 4', () => {
+    expect(() => sum(1, 3)).toBe(4);
+  });
+  test('sum("1", 2) returns 3', () => {
+    expect(() => sum("1", 2).toBe(3));
+  });
+  test('sum("10", "3") returns 13', () => {
+    expect(() => sum("10", "3")).toBe(13);
+  });
+})
   /*
   👉 TASK 2 - Integration Testing of HelloWorld component at the bottom of this module
 
   Test the <HelloWorld /> component found below...
-    - using `screen.queryByText` to capture nodes
-    - using `toBeInTheDocument` to assert their existence in the DOM
+    - using screen.queryByText to capture nodes
+    - using toBeInTheDocument to assert their existence in the DOM
 
     [1] renders a link that reads "Home"
     [2] renders a link that reads "About"
@@ -29,18 +45,18 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [5] renders a text that reads "JavaScript is pretty awesome"
     [6] renders a text that includes "javaScript is pretty" (use exact = false)
   */
-  test('you can comment out this test', () => {
-    expect(true).toBe(false)
-  })
-})
+//   test("you can comment out this test", () => {
+//     expect(true).toBe(false);
+//   });
+// });
 
 function sum(a, b) {
-  a = Number(a)
-  b = Number(b)
+  a = Number(a);
+  b = Number(b);
   if (isNaN(a) || isNaN(b)) {
-    throw new Error('pass valid numbers')
+    throw new Error("pass valid numbers");
   }
-  return a + b
+  return a + b;
 }
 
 function HelloWorld() {
@@ -48,9 +64,9 @@ function HelloWorld() {
     <div>
       <h1>Hello World Component</h1>
       <nav>
-        <a href='#'>Home</a>
-        <a href='#'>About</a>
-        <a href='#'>Blog</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
       </nav>
       <main>
         <section>
@@ -59,5 +75,5 @@ function HelloWorld() {
         </section>
       </main>
     </div>
-  )
+  );
 }

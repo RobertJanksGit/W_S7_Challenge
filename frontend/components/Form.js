@@ -24,7 +24,7 @@ const validationErrors = {
 const formSchema = Yup.object().shape({
   fullName: Yup.string()
     .trim()
-    .required("full name required")
+    // .required("full name required")
     .min(3, validationErrors.fullNameTooShort)
     .max(20, validationErrors.fullNameTooLong),
   size: Yup.string().oneOf(["S", "M", "L"], validationErrors.sizeIncorrect),
@@ -53,17 +53,19 @@ export default function Form() {
       .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = async (evt) => {
     evt.preventDefault();
-    axios
-      .post("http://localhost:9009/api/order", formValues)
-      .then((res) => {
-        setSuccessMessage(res.data.message);
-      })
-      .catch((err) => {
-        setErrorMessage(err.response.data.message);
-      })
-      .finally(() => setFormValues(initialFormValues));
+    try {
+      const res = await axios.post(
+        "http://localhost:9009/api/order",
+        formValues
+      );
+      setSuccessMessage(res.data.message);
+    } catch (err) {
+      setErrorMessage(err.response.data.message);
+    } finally {
+      setFormValues(initialFormValues);
+    }
   };
 
   const onChange = (evt) => {
