@@ -69,7 +69,9 @@ export default function Form() {
   };
 
   const onChange = (evt) => {
-    const { name, value, type } = evt.target;
+    let { name, value, type } = evt.target;
+
+    value = value.trim();
 
     if (type !== "checkbox") {
       validate(name, value);

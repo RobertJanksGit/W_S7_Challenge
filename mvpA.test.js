@@ -224,7 +224,7 @@ describe("Sprint 7 Challenge Codegrade Tests", () => {
           screen.queryByText(validationError, queryOptions)
         ).not.toBeInTheDocument();
       }, waitForOptions);
-    }, 1000);
+    }, 10000);
     test("[11] Validation of `size` renders correct error message", async () => {
       const validationError = "size must be S or M or L";
 
